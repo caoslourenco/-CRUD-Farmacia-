@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Table(name = "tb_categoria")
@@ -28,6 +29,18 @@ public class Categoria {
     @NotNull(message = "O atributo data de criação é obrigatória")
     @Past
     private LocalDate dataCriacao;
+
+    @NotNull(message = "O atributo é obrigatório!")
+    @OneToMany(mappedBy = "categoria")
+    private List<Produto> produto;
+
+    public List<Produto> getProduto() {
+        return produto;
+    }
+
+    public void setProduto(List<Produto> produto) {
+        this.produto = produto;
+    }
 
     public Long getId() {
         return id;
